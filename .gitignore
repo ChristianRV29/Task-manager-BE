@@ -1,2 +1,10 @@
 node_modules
 .env
+*.log
+config.json
+.idea
+.DS_Store
+.vscode
+travis*.json
+credentials*.json
+ci-sec.tar
