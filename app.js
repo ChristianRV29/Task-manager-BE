@@ -3,6 +3,8 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 
+const statusRoutes = require('./routes/status');
+
 const port = process.env.PORT || 8080;
 const app = express();
 
@@ -25,14 +27,9 @@ app.use(allowLocalhost ? cors(): cors(corsOption));
 app.use(bodyParser.json({ limit: '600mb' }));
 app.use(bodyParser.urlencoded({ limit: '600mb', extended: true }));
 
+app.use('/api/', statusRoutes);
 
-app.get('/', (req, res) => {
-    res.status(200).send(`Welcome to Task-Manager-BE, please add "/api/docs" in the URL to make use of the endpoints.`);
-})
 
 app.listen(port, () => {
     console.log(`The server is running on port: ${port}`);
 });
-
-
-
