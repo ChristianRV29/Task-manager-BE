@@ -2,6 +2,7 @@ require('dotenv').config();
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
+const log = require('./utils/logger');
 
 const statusRoutes = require('./routes/status');
 
@@ -17,7 +18,7 @@ const corsOption = {
     if ((!origin || allowLocalhost)) {
       callback(null, true);
     } else {
-      console.log(`Attemped to provide a response to origin: ${origin}`);
+      log.info(`Attemped to provide a response to origin: ${origin}`);
       callback(new Error('Not allowed by CORS'));
     }
   },
@@ -30,5 +31,5 @@ app.use(bodyParser.urlencoded({ limit: '600mb', extended: true }));
 app.use('/api/', statusRoutes);
 
 app.listen(port, () => {
-  console.log(`The server is running on port: ${port}`);
+  log.info(`The server is running on port: ${port}`);
 });
