@@ -5,6 +5,7 @@ const cors = require('cors');
 const log = require('./utils/logger');
 
 const statusRoutes = require('./routes/status');
+const taskRoutes = require('./routes/task');
 
 const port = process.env.PORT || 8080;
 const app = express();
@@ -29,6 +30,7 @@ app.use(bodyParser.json({ limit: '600mb' }));
 app.use(bodyParser.urlencoded({ limit: '600mb', extended: true }));
 
 app.use('/api/', statusRoutes);
+app.use('/api/task', taskRoutes);
 
 app.listen(port, () => {
   log.info(`The server is running on port: ${port}`);
