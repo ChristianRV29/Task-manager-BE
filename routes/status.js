@@ -5,7 +5,7 @@ const { ENV } = process.env;
 
 router.get('/', (req, res) => {
   res.status(200).send({
-    status: 200, message: 'Ok!', env: ENV,
+    status: 200, message: 'Server runnings ok!', env: ENV,
   });
 });
 
