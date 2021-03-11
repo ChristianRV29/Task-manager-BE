@@ -3,7 +3,7 @@ const log = require('../../utils/logger');
 
 const URI = process.env.MONGOOSE_URI
   ? process.env.MONGOOSE_URI
-  : 'mongodb://localhost:27017/task-manager';
+  : 'Unknown';
 
 mongoose.connect(URI, {
   useNewUrlParser: true,
@@ -13,6 +13,7 @@ mongoose.connect(URI, {
 const { connection } = mongoose;
 
 connection.once('open', () => {
+  log.info({ message: `URI: ${URI}` });
   log.info('MongoDB connected');
 });
 
